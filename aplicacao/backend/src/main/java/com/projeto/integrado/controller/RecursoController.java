@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
 
 import com.projeto.integrado.entity.Recurso;
 import com.projeto.integrado.service.RecursoService;
@@ -22,6 +24,12 @@ import com.projeto.integrado.service.RecursoService;
 public class RecursoController {
 	@Autowired
 	RecursoService recursoService;
+	
+	@GetMapping 
+	public ResponseEntity<Recurso> getByRecursoNome(@RequestParam("recursoNome")String recursoNome){
+		return new ResponseEntity<>(recursoService.getByRecursoNome(recursoNome), HttpStatus.OK);
+	}
+	
 	
 	@GetMapping
 	public ResponseEntity<List<Recurso>> getAll(){

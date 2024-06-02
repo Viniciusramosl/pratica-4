@@ -11,6 +11,10 @@ public class ProjetoService {
 	@Autowired
 	ProjetoRepository projetoRepository;
 	
+	public Projeto getByDescricao(String descricao) {
+		return projetoRepository.findByProjetoDescricao(descricao).get();
+	}
+	
 	public List<Projeto> getAll(){
 		return projetoRepository.findAll();
 	}

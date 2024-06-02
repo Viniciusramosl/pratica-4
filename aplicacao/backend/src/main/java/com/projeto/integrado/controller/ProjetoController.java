@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.projeto.integrado.entity.Projeto;
@@ -22,6 +23,12 @@ import com.projeto.integrado.service.ProjetoService;
 public class ProjetoController {
 	@Autowired
 	ProjetoService projetoService;
+	
+	@GetMapping 
+	public ResponseEntity<Projeto> getByDescricao(@RequestParam("descricao")String descricao){
+		return new ResponseEntity<>(projetoService.getByDescricao(descricao), HttpStatus.OK);
+	}
+	
 	
 	@GetMapping
 	public ResponseEntity<List<Projeto>> getAll(){

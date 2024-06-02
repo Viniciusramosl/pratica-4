@@ -43,4 +43,9 @@ public class RecursoService {
 			return false;
 		}
 	}
+
+	public Recurso getByRecursoNome(String recursoNome) {
+		
+		return recursoRepository.findByRecursoNome(recursoNome).get();
+	}
 }

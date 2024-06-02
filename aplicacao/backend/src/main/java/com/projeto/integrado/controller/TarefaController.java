@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.projeto.integrado.entity.StatusTarefa;
 import com.projeto.integrado.entity.Tarefa;
 import com.projeto.integrado.service.TarefaService;
 
@@ -22,6 +23,11 @@ import com.projeto.integrado.service.TarefaService;
 public class TarefaController {
 	@Autowired
 	TarefaService tarefaService;
+	
+	@GetMapping 
+	public ResponseEntity<Tarefa> getByStatus(@RequestBody StatusTarefa status){
+		return new ResponseEntity<>(tarefaService.getByStatus(status), HttpStatus.OK);
+	}
 	
 	@GetMapping
 	public ResponseEntity<List<Tarefa>> getAll(){
